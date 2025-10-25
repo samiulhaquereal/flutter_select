@@ -199,8 +199,9 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
           children:
               widget.value.map((option) {
                 onDeleted() => _onChipDeleted(option);
-                if (widget.chipBuilder != null)
+                if (widget.chipBuilder != null) {
                   return widget.chipBuilder!(context, option, onDeleted);
+                }
                 return Chip(
                   label: Text(option.toString(), style: theme.chipLabelStyle),
                   padding: theme.chipPadding,
@@ -213,8 +214,9 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
         ),
       );
     }
-    if (!widget.isMulti && widget.value.isNotEmpty)
+    if (!widget.isMulti && widget.value.isNotEmpty) {
       return Text(widget.value.first.toString(), style: theme.valueStyle);
+    }
     return Text(
       widget.label == null ? widget.placeholder : '',
       style: theme.placeholderStyle,

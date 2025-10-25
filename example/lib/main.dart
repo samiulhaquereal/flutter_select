@@ -12,10 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Retcore Select Example',
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(primarySwatch: Colors.deepPurple, useMaterial3: true),
       home: const ExampleScreen(),
     );
   }
@@ -34,15 +31,19 @@ class _ExampleScreenState extends State<ExampleScreen> {
   List<String> _multiValues = [];
 
   final List<String> _options = [
-    'Flutter', 'React', 'Vue', 'Angular', 'Svelte', 'Ember', 'Backbone'
+    'Flutter',
+    'React',
+    'Vue',
+    'Angular',
+    'Svelte',
+    'Ember',
+    'Backbone',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Retcore Select Example'),
-      ),
+      appBar: AppBar(title: const Text('Retcore Select Example')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Center(
@@ -51,7 +52,6 @@ class _ExampleScreenState extends State<ExampleScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 const Text(
                   '1. Single Select',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -105,7 +105,6 @@ class _ExampleScreenState extends State<ExampleScreen> {
                   values: const ['Flutter', 'React'],
                   onValuesChanged: (v) {},
                 ),
-
               ],
             ),
           ),
@@ -114,4 +113,3 @@ class _ExampleScreenState extends State<ExampleScreen> {
     );
   }
 }
-
