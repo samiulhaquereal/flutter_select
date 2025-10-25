@@ -85,7 +85,7 @@ class FlutterSelectTheme {
         borderRadius: BorderRadius.circular(6.0),
         side: BorderSide(color: Colors.grey.shade400),
       ),
-      dropdownItemSelectedColor: theme.primaryColor.withOpacity(0.1),
+      dropdownItemSelectedColor: theme.primaryColor.withAlpha(25),
       dropdownItemStyle: const TextStyle(),
       dropdownSelectedItemStyle: TextStyle(color: theme.primaryColor),
       checkIconTheme: IconThemeData(color: theme.primaryColor),
