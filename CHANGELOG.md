@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Fixed enclosed in a block.
+
 ## 0.0.4
 
 * Deprecated file removed.
