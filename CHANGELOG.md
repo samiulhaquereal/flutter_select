@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Required field & validation documentation added.
+
 ## 0.0.6
 
 * Required field & Validation added.
