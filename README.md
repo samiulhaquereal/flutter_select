@@ -40,3 +40,40 @@ Retcore Select is a highly versatile and themeable select component designed to 
 
 Add this to your package's `pubspec.yaml` file:
 
+
+### `RetCoreSelect` Properties
+
+| Property         | Type                     | Description                                                                                             |
+|------------------|--------------------------|---------------------------------------------------------------------------------------------------------|
+| `options`        | `List<dynamic>`          | The list of items to display in the dropdown.                                                           |
+| `placeholder`    | `String`                 | The text to show when the field is empty and has no label. Defaults to 'Select...'.                     |
+| `label`          | `String?`                | The floating label text for the input field.                                                            |
+| `isMulti`        | `bool`                   | If `true`, allows multiple values to be selected. Defaults to `false`.                                   |
+| `isSearchable`   | `bool`                   | If `true`, shows a search bar in the dropdown. Defaults to `false`.                                     |
+| `isDisabled`     | `bool`                   | If `true`, disables user interaction. Defaults to `false`.                                              |
+| `isClearable`    | `bool`                   | If `true`, shows a clear icon to remove all selected values. Defaults to `false`.                       |
+| `isFromApi`      | `bool`                   | Set to `true` when using `onSearch` to fetch data from an API. Defaults to `false`.                       |
+| `isLoading`      | `bool`                   | If `true`, shows loading indicators. Used with `isFromApi`. Defaults to `false`.                          |
+| `theme`          | `FlutterSelectTheme?`    | An object to customize the appearance of the widget.                                                    |
+| `chipBuilder`    | `CustomChipBuilder<T>?`  | A function to build custom widgets for selected items in multi-select mode.                             |
+| `onSearch`       | `Function(String)?`      | A callback that is triggered when the user types in the search field.                                   |
+| `value`          | `T?`                     | The selected value in single-select mode. **Required if `isMulti` is `false`**.                           |
+| `onChanged`      | `Function(T?)?`          | Callback for value changes in single-select mode. **Required if `isMulti` is `false`**.                   |
+| `values`         | `List<T>?`               | The list of selected values in multi-select mode. **Required if `isMulti` is `true`**.                     |
+| `onValuesChanged`| `Function(List<T>)?`   | Callback for value changes in multi-select mode. **Required if `isMulti` is `true`**.                     |
+
+## Contributing
+
+Contributions are welcome! If you find a bug or have a feature request, please open an issue. If you want to contribute code, please open a pull request.
+
+1.  Fork the repository.
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+
