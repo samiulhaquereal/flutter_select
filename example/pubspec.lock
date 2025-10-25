@@ -143,10 +143,10 @@ packages:
     dependency: "direct main"
     description:
       name: retcore_select
-      sha256: "6424939755c9dc98bbc3d1d9e7a6b5441c06d91ac5698ed309c0df3f45e70560"
+      sha256: "731e99620855d35e341828cf95df21a2287054355637a9e81126455bd2d9be81"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5"
+    version: "0.0.6"
   sky_engine:
     dependency: transitive
     description: flutter
