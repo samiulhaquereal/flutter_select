@@ -5,7 +5,7 @@
   For example, using a service like Canva or Figma.
 -->
 <p align="center">
-  <img src="your_logo_url_here.png" alt="Retcore Select Logo" width="200"/>
+  <img src="![img.png](screenshots/img.png)" alt="Retcore Select Logo" width="200"/>
 </p>
 
 <p align="center">
