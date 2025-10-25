@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Deprecated file removed.
+
 ## 0.0.3
 
 * Documentation added.
