@@ -41,7 +41,7 @@ dependencies:
 ## Theme
 
 ```flutter
-final customTheme = FlutterSelectTheme(
+final customTheme = RetCoreSelectTheme(
     labelStyle: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,

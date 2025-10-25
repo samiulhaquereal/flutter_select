@@ -27,6 +27,8 @@ class RetCoreSelectTheme {
 
   // --- Search Field in Dropdown ---
   final TextStyle? searchHintStyle;
+  final double? searchIconSize;
+  final Color? searchIconColor;
 
   // --- Indicators & Messages ---
   final double? loadingIndicatorSize;
@@ -41,7 +43,9 @@ class RetCoreSelectTheme {
   /// Creates a theme for the [CustomSelect] widget.
   const RetCoreSelectTheme({
     this.labelStyle,
+    this.searchIconColor,
     this.decoration,
+    this.searchIconSize,
     this.floatingLabelStyle,
     this.fieldDisabledColor,
     this.fieldBorderRadius,
@@ -70,33 +74,34 @@ class RetCoreSelectTheme {
       labelStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
-        color: Colors.black54,
+        color: AppColors.black54Color,
       ),
-      fieldDisabledColor: Colors.grey.shade200,
+      fieldDisabledColor: AppColors.shade200GrayColor,
       fieldBorderRadius: BorderRadius.circular(8.0),
-      placeholderStyle: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-      valueStyle: const TextStyle(fontSize: 14, color: Colors.black87),
-      chipBackgroundColor: Colors.grey.shade300,
+      placeholderStyle: TextStyle(fontSize: 14, color: AppColors.shade600GrayColor),
+      valueStyle: const TextStyle(fontSize: 14, color: AppColors.black87Color),
+      chipBackgroundColor: AppColors.shade300GrayColor,
       chipLabelStyle: const TextStyle(fontSize: 12),
-      chipDeleteIconColor: Colors.grey.shade700,
+      chipDeleteIconColor: AppColors.shade700GrayColor,
       chipPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
       // Default value is already a valid OutlinedBorder
       chipShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6.0),
-        side: BorderSide(color: Colors.grey.shade400),
+        side: BorderSide(color: AppColors.shade400GrayColor ?? AppColors.black54Color),
       ),
       dropdownItemSelectedColor: theme.primaryColor.withAlpha(25),
       dropdownItemStyle: const TextStyle(),
       dropdownSelectedItemStyle: TextStyle(color: theme.primaryColor),
       checkIconTheme: IconThemeData(color: theme.primaryColor),
-      searchHintStyle: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+      searchHintStyle: TextStyle(fontSize: 14, color: AppColors.shade500GrayColor),
       loadingIndicatorSize: 6.0,
       loadingIndicatorColor: theme.primaryColor,
+      searchIconSize: 20,
       loadingTextStyle: const TextStyle(
-        color: Colors.grey,
+        color: AppColors.greyColor,
         fontStyle: FontStyle.italic,
       ),
-      noOptionsFoundTextStyle: const TextStyle(color: Colors.grey),
+      noOptionsFoundTextStyle: const TextStyle(color: AppColors.greyColor),
     );
   }
 }

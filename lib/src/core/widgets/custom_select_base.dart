@@ -215,7 +215,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
       );
     }
     if (!widget.isMulti && widget.value.isNotEmpty) {
-      return Text(widget.value.first.toString(), style: theme.valueStyle);
+      return Text(widget.value.first.toString(), style: theme.valueStyle,overflow: TextOverflow.ellipsis);
     }
     return Text(
       widget.label == null ? widget.placeholder : '',
@@ -239,10 +239,10 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
               decoration: InputDecoration(
                 hintText: 'Search...',
                 hintStyle: theme.searchHintStyle,
-                prefixIcon: const Icon(Icons.search, size: 20),
+                prefixIcon: Icon(Icons.search, size: widget.theme.searchIconSize,color: widget.theme.searchIconColor),
                 isDense: true,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: widget.theme.fieldBorderRadius ?? BorderRadius.circular(0),
                 ),
               ),
               style: const TextStyle(fontSize: 14),
@@ -310,13 +310,13 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: LoadingVibeIndicator(
           dotSize: widget.theme.loadingIndicatorSize ?? 6,
-          dotColor: widget.theme.loadingIndicatorColor ?? Colors.grey,
+          dotColor: widget.theme.loadingIndicatorColor ?? AppColors.greyColor,
         ),
       );
     }
     return Icon(
       _isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-      color: widget.isDisabled ? Colors.grey.shade400 : Colors.grey.shade700,
+      color: widget.isDisabled ? AppColors.shade400GrayColor : AppColors.shade700GrayColor,
     );
   }
 
@@ -353,7 +353,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                 theme.decoration?.disabledBorder ??
                 OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: theme.fieldDisabledColor ?? Colors.grey.shade200,
+                    color: theme.fieldDisabledColor ?? AppColors.shade200GrayColor ?? AppColors.greyColor,
                     width: 2.0,
                   ),
                 ),
@@ -374,7 +374,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                     child: Icon(
                       Icons.close,
                       size: 18,
-                      color: Colors.grey.shade600,
+                      color: AppColors.shade600GrayColor,
                     ),
                   ),
                 ),
