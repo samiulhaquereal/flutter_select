@@ -17,7 +17,7 @@ class CustomSelectBase<T> extends StatefulWidget {
       isClearable,
       isFromApi,
       isLoading;
-  final FlutterSelectTheme theme;
+  final RetCoreSelectTheme theme;
   final CustomChipBuilder<T>? chipBuilder;
   final Function(List<T> newValue) onChanged;
   final Function(String query)? onSearch;
@@ -53,7 +53,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   List<T> _filteredOptions = [];
   bool _isOverlayVisible = false;
 
-  FlutterSelectTheme get theme => widget.theme;
+  RetCoreSelectTheme get theme => widget.theme;
 
   @override
   void initState() {

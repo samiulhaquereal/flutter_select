@@ -1,7 +1,7 @@
 import 'package:retcore_select/src/config/import.dart';
 
 /// A comprehensive theme data class for customizing the [CustomSelect] widget.
-class FlutterSelectTheme {
+class RetCoreSelectTheme {
   // --- Field Label ---
   final TextStyle? labelStyle;
 
@@ -39,7 +39,7 @@ class FlutterSelectTheme {
   final TextStyle? floatingLabelStyle;
 
   /// Creates a theme for the [CustomSelect] widget.
-  const FlutterSelectTheme({
+  const RetCoreSelectTheme({
     this.labelStyle,
     this.decoration,
     this.floatingLabelStyle,
@@ -64,9 +64,9 @@ class FlutterSelectTheme {
   });
 
   /// A default theme that provides a clean, standard look.
-  factory FlutterSelectTheme.defaultTheme(BuildContext context) {
+  factory RetCoreSelectTheme.defaultTheme(BuildContext context) {
     final theme = Theme.of(context);
-    return FlutterSelectTheme(
+    return RetCoreSelectTheme(
       labelStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,

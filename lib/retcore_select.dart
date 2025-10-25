@@ -32,7 +32,7 @@ class RetCoreSelect<T> extends StatelessWidget {
   final bool isLoading;
 
   /// The theme to style the widget.
-  final FlutterSelectTheme? theme;
+  final RetCoreSelectTheme? theme;
 
   /// A custom builder for creating chip widgets in multi-select mode.
   final CustomChipBuilder<T>? chipBuilder;
@@ -98,7 +98,7 @@ class RetCoreSelect<T> extends StatelessWidget {
       isClearable: isClearable,
       isFromApi: isFromApi,
       isLoading: isLoading,
-      theme: theme ?? FlutterSelectTheme(),
+      theme: theme ?? RetCoreSelectTheme(),
       chipBuilder: chipBuilder,
       options: options.cast<T>().toList(),
       value: isMulti ? values! : (value == null ? [] : [value as T]),
