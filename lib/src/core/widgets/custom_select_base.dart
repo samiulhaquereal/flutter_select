@@ -50,7 +50,8 @@ class CustomSelectBase<T> extends StatefulWidget {
 
 class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   final LayerLink _layerLink = LayerLink();
-  final GlobalKey<FormFieldState<List<T>>> _formFieldKey = GlobalKey<FormFieldState<List<T>>>();
+  final GlobalKey<FormFieldState<List<T>>> _formFieldKey =
+      GlobalKey<FormFieldState<List<T>>>();
   TextEditingController? _searchController;
   FocusNode? _searchFocusNode;
   OverlayEntry? _overlayEntry;
@@ -219,7 +220,11 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
       );
     }
     if (!widget.isMulti && widget.value.isNotEmpty) {
-      return Text(widget.value.first.toString(), style: theme.valueStyle,overflow: TextOverflow.ellipsis);
+      return Text(
+        widget.value.first.toString(),
+        style: theme.valueStyle,
+        overflow: TextOverflow.ellipsis,
+      );
     }
     return Text(
       widget.label == null ? widget.placeholder : '',
@@ -243,10 +248,16 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
               decoration: InputDecoration(
                 hintText: 'Search...',
                 hintStyle: theme.searchHintStyle,
-                prefixIcon: Icon(Icons.search, size: widget.theme.searchIconSize,color: widget.theme.searchIconColor),
+                prefixIcon: Icon(
+                  Icons.search,
+                  size: widget.theme.searchIconSize,
+                  color: widget.theme.searchIconColor,
+                ),
                 isDense: true,
                 border: OutlineInputBorder(
-                  borderRadius: widget.theme.fieldBorderRadius ?? BorderRadius.circular(0),
+                  borderRadius:
+                      widget.theme.fieldBorderRadius ??
+                      BorderRadius.circular(0),
                 ),
               ),
               style: const TextStyle(fontSize: 14),
@@ -320,40 +331,56 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
     }
     return Icon(
       _isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-      color: widget.isDisabled ? AppColors.shade400GrayColor : AppColors.shade700GrayColor,
+      color:
+          widget.isDisabled
+              ? AppColors.shade400GrayColor
+              : AppColors.shade700GrayColor,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return FormField(
-        key: _formFieldKey,
-        initialValue: widget.value,
-        builder: (field){
-          return CompositedTransformTarget(
+      key: _formFieldKey,
+      initialValue: widget.value,
+      builder: (field) {
+        return CompositedTransformTarget(
           link: _layerLink,
           child: GestureDetector(
             onTap: _toggleOverlay,
             child: InputDecorator(
               decoration: (theme.decoration ?? InputDecoration()).copyWith(
-                label: widget.label == null ? null : RichText(
-                  text: TextSpan(
-                    // Use the default label style from the theme, or a fallback.
-                    style: theme.labelStyle ?? TextStyle(
-                        fontSize: 16,
-                        color: _isOverlayVisible ? Theme.of(context).primaryColor : AppColors.shade600GrayColor
-                    ),
-                    children: [
-                      TextSpan(text: widget.label),
-                      if (widget.isRequired)
-                        TextSpan(
-                          text: ' *',
-                          // Use a specific style for the asterisk, defaulting to red.
-                          style: theme.requiredTextStyle ?? TextStyle(color: AppColors.redColor,fontSize: 10),
+                label:
+                    widget.label == null
+                        ? null
+                        : RichText(
+                          text: TextSpan(
+                            // Use the default label style from the theme, or a fallback.
+                            style:
+                                theme.labelStyle ??
+                                TextStyle(
+                                  fontSize: 16,
+                                  color:
+                                      _isOverlayVisible
+                                          ? Theme.of(context).primaryColor
+                                          : AppColors.shade600GrayColor,
+                                ),
+                            children: [
+                              TextSpan(text: widget.label),
+                              if (widget.isRequired)
+                                TextSpan(
+                                  text: ' *',
+                                  // Use a specific style for the asterisk, defaulting to red.
+                                  style:
+                                      theme.requiredTextStyle ??
+                                      TextStyle(
+                                        color: AppColors.redColor,
+                                        fontSize: 10,
+                                      ),
+                                ),
+                            ],
+                          ),
                         ),
-                    ],
-                  ),
-                ),
                 hintText: widget.label != null ? widget.placeholder : null,
                 hintStyle: theme.placeholderStyle,
                 labelStyle: theme.labelStyle,
@@ -361,16 +388,51 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                 floatingLabelStyle: theme.floatingLabelStyle,
                 filled: widget.isDisabled,
                 fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
-                border: theme.decoration?.border ?? OutlineInputBorder(
-                      borderRadius: widget.theme.fieldBorderRadius ?? BorderRadius.all(Radius.circular(0)),
+                border:
+                    theme.decoration?.border ??
+                    OutlineInputBorder(
+                      borderRadius:
+                          widget.theme.fieldBorderRadius ??
+                          BorderRadius.all(Radius.circular(0)),
                     ),
-                enabledBorder: theme.decoration?.enabledBorder ?? const OutlineInputBorder(),
-                focusedBorder: theme.decoration?.focusedBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2.0)),
-                errorBorder: theme.decoration?.errorBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: 2.0)),
-                focusedErrorBorder: theme.decoration?.focusedErrorBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: 2.0)),
-                contentPadding: theme.decoration?.contentPadding ?? const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                disabledBorder: theme.decoration?.disabledBorder ?? OutlineInputBorder(borderSide: BorderSide(
-                        color: theme.fieldDisabledColor ?? AppColors.shade200GrayColor ?? AppColors.greyColor,
+                enabledBorder:
+                    theme.decoration?.enabledBorder ??
+                    const OutlineInputBorder(),
+                focusedBorder:
+                    theme.decoration?.focusedBorder ??
+                    OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 2.0,
+                      ),
+                    ),
+                errorBorder:
+                    theme.decoration?.errorBorder ??
+                    OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.error,
+                        width: 2.0,
+                      ),
+                    ),
+                focusedErrorBorder:
+                    theme.decoration?.focusedErrorBorder ??
+                    OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.error,
+                        width: 2.0,
+                      ),
+                    ),
+                contentPadding:
+                    theme.decoration?.contentPadding ??
+                    const EdgeInsets.fromLTRB(12, 16, 12, 16),
+                disabledBorder:
+                    theme.decoration?.disabledBorder ??
+                    OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color:
+                            theme.fieldDisabledColor ??
+                            AppColors.shade200GrayColor ??
+                            AppColors.greyColor,
                         width: 2.0,
                       ),
                     ),
@@ -401,6 +463,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
             ),
           ),
         );
-    });
+      },
+    );
   }
 }

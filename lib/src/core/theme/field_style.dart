@@ -80,7 +80,10 @@ class RetCoreSelectTheme {
       ),
       fieldDisabledColor: AppColors.shade200GrayColor,
       fieldBorderRadius: BorderRadius.circular(8.0),
-      placeholderStyle: TextStyle(fontSize: 14, color: AppColors.shade600GrayColor),
+      placeholderStyle: TextStyle(
+        fontSize: 14,
+        color: AppColors.shade600GrayColor,
+      ),
       valueStyle: const TextStyle(fontSize: 14, color: AppColors.black87Color),
       chipBackgroundColor: AppColors.shade300GrayColor,
       chipLabelStyle: const TextStyle(fontSize: 12),
@@ -89,13 +92,18 @@ class RetCoreSelectTheme {
       // Default value is already a valid OutlinedBorder
       chipShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6.0),
-        side: BorderSide(color: AppColors.shade400GrayColor ?? AppColors.black54Color),
+        side: BorderSide(
+          color: AppColors.shade400GrayColor ?? AppColors.black54Color,
+        ),
       ),
       dropdownItemSelectedColor: theme.primaryColor.withAlpha(25),
       dropdownItemStyle: const TextStyle(),
       dropdownSelectedItemStyle: TextStyle(color: theme.primaryColor),
       checkIconTheme: IconThemeData(color: theme.primaryColor),
-      searchHintStyle: TextStyle(fontSize: 14, color: AppColors.shade500GrayColor),
+      searchHintStyle: TextStyle(
+        fontSize: 14,
+        color: AppColors.shade500GrayColor,
+      ),
       loadingIndicatorSize: 6.0,
       loadingIndicatorColor: theme.primaryColor,
       searchIconSize: 20,
