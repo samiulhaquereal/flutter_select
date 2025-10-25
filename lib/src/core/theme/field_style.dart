@@ -1,4 +1,4 @@
-import 'package:flutter_select/src/config/import.dart';
+import 'package:retcore_select/src/config/import.dart';
 
 /// A comprehensive theme data class for customizing the [CustomSelect] widget.
 class FlutterSelectTheme {

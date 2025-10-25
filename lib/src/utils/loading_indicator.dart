@@ -1,4 +1,4 @@
-import 'package:flutter_select/src/config/import.dart';
+import 'package:retcore_select/src/config/import.dart';
 
 /// A custom loading indicator that mimics the style of popular select components.
 class LoadingVibeIndicator extends StatefulWidget {

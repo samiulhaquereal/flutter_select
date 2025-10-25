@@ -1,8 +1,8 @@
-import 'package:flutter_select/src/config/import.dart';
+import 'package:retcore_select/src/config/import.dart';
 
 /// A highly customizable select widget for Flutter, supporting single and multi-selection,
 /// local and API-based searching, and extensive theming.
-class CustomSelect<T> extends StatelessWidget {
+class RetCoreSelect<T> extends StatelessWidget {
   /// The list of options to display in the dropdown.
   final List<dynamic> options;
 
@@ -51,7 +51,7 @@ class CustomSelect<T> extends StatelessWidget {
   /// A callback that fires when the selected values change (for multi-select mode).
   final Function(List<T>)? onValuesChanged;
 
-  const CustomSelect({
+  const RetCoreSelect({
     super.key,
     required this.options,
     this.placeholder = 'Select...',

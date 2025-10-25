@@ -1,4 +1,4 @@
-import 'package:flutter_select/src/config/import.dart';
+import 'package:retcore_select/src/config/import.dart';
 
 /// A utility class to delay function execution. Useful for search fields
 /// to prevent firing API calls on every keystroke.

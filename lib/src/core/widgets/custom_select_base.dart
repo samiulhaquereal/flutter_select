@@ -1,4 +1,4 @@
-import 'package:flutter_select/src/config/import.dart';
+import 'package:retcore_select/src/config/import.dart';
 
 // A builder function to create a custom chip widget.
 typedef CustomChipBuilder<T> = Widget Function(
