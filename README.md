@@ -10,7 +10,7 @@
   <!-- Pub.dev Badge -->
   <a href="https://pub.dev/packages/retcore_select"><img src="https://img.shields.io/pub/v/retcore_select.svg" alt="Pub.dev"></a>
   <!-- License Badge -->
-  <a href="https://github.com/your_username/retcore_select/blob/main/LICENSE"><img src="https://img.shields.io/github/license/your_username/retcore_select" alt="License"></a>
+  <a href="https://github.com/samiulhaquereal/retcore_select/blob/master/LICENSE"><img src="https://img.shields.io/github/license/samiulhaquereal/retcore_select" alt="License"></a>
   <!-- Popularity Badge -->
   <a href="https://pub.dev/packages/retcore_select"><img src="https://img.shields.io/pub/popularity/retcore_select" alt="Popularity"></a>
 </p>
