@@ -89,7 +89,7 @@ class RetCoreSelect<T> extends StatelessWidget {
       theme: theme ?? FlutterSelectTheme(),
       chipBuilder: chipBuilder,
       options: options.cast<T>().toList(),
-      value: isMulti ? values! : (value == null ? [] : [value!]),
+      value: isMulti ? values! : (value == null ? [] : [value as T]),
       onChanged: (newValue) {
         if (isMulti) {
           onValuesChanged!(newValue.cast<T>());

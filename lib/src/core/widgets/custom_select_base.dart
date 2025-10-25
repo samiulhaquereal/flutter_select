@@ -124,8 +124,11 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   void _onOptionSelected(T option) {
     if (widget.isMulti) {
       List<T> newValue = List.from(widget.value);
-      if (newValue.contains(option)) newValue.remove(option);
-      else newValue.add(option);
+      if (newValue.contains(option)) {
+        newValue.remove(option);
+      } else {
+        newValue.add(option);
+      }
       widget.onChanged(newValue);
     } else {
       widget.onChanged([option]);
@@ -144,22 +147,23 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   void _clearSelection() => widget.onChanged([]);
 
   Widget _buildValueDisplay() {
-    if (widget.value.isNotEmpty) {
-      if (widget.isMulti) {
-        return Wrap(
+    if (widget.isMulti && widget.value.isNotEmpty) {
+      return AbsorbPointer(
+        absorbing: widget.isDisabled,
+        child: Wrap(
           spacing: 6.0, runSpacing: 6.0,
           children: widget.value.map((option) {
-            final onDeleted = widget.isDisabled ? null : () => _onChipDeleted(option);
+            onDeleted() => _onChipDeleted(option);
             if (widget.chipBuilder != null) return widget.chipBuilder!(context, option, onDeleted);
             return Chip(
                 label: Text(option.toString(), style: theme.chipLabelStyle), padding: theme.chipPadding, onDeleted: onDeleted,
                 deleteIconColor: theme.chipDeleteIconColor, backgroundColor: theme.chipBackgroundColor, shape: theme.chipShape);
           }).toList(),
-        );
-      }
-      return Text(widget.value.first.toString(), style: theme.valueStyle);
+        ),
+      );
     }
-    return const SizedBox.shrink();
+    if (!widget.isMulti && widget.value.isNotEmpty) return Text(widget.value.first.toString(), style: theme.valueStyle);
+    return Text(widget.label == null ? widget.placeholder : '', style: theme.placeholderStyle, maxLines: 1, overflow: TextOverflow.ellipsis);
   }
 
   Widget _buildOptionsList() {
@@ -201,30 +205,46 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
     ]);
   }
 
+  Widget _buildTrailingIcon() {
+    if (widget.isFromApi && widget.isLoading) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: LoadingVibeIndicator(
+          dotSize: widget.theme.loadingIndicatorSize ?? 6,
+          dotColor: widget.theme.loadingIndicatorColor ?? Colors.grey,
+        ),
+      );
+    }
+    return Icon(
+      _isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+      color: widget.isDisabled ? Colors.grey.shade400 : Colors.grey.shade700,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final effectiveTheme = Theme.of(context);
-    final defaultDecoration = InputDecoration(
-      contentPadding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-      border: const OutlineInputBorder(),
-      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400)),
-      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: effectiveTheme.primaryColor, width: 2.0)),
-      disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade300, width: 1.0)),
-    );
-
     return CompositedTransformTarget(
       link: _layerLink,
       child: GestureDetector(
         onTap: _toggleOverlay,
         child: InputDecorator(
-          decoration: (theme.decoration ?? defaultDecoration).copyWith(
+          decoration: (theme.decoration ?? InputDecoration()).copyWith(
             labelText: widget.label,
-            hintText: widget.label == null ? widget.placeholder : null,
+            hintText: widget.label != null ? widget.placeholder : null ,
             hintStyle: theme.placeholderStyle,
-            labelStyle: theme.floatingLabelStyle,
+            labelStyle: theme.labelStyle,
             floatingLabelStyle: theme.floatingLabelStyle,
             filled: widget.isDisabled,
-            fillColor: widget.isDisabled ? (Colors.grey.shade200) : null,
+            fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
+            border: theme.decoration?.border ?? OutlineInputBorder(
+                  borderRadius: widget.theme.fieldBorderRadius ?? BorderRadius. all(Radius. circular(0))
+              ),
+            enabledBorder: theme.decoration?.enabledBorder ?? const OutlineInputBorder(),
+            focusedBorder: theme.decoration?.focusedBorder ?? const OutlineInputBorder(),
+            contentPadding: theme.decoration?.contentPadding ?? const EdgeInsets.fromLTRB(12, 16, 12, 16),
+            disabledBorder: theme.decoration?.disabledBorder ?? OutlineInputBorder(
+               borderSide: BorderSide(color: theme.fieldDisabledColor ?? Colors.grey.shade200, width: 2.0),
+            )
           ),
           isFocused: _isOverlayVisible,
           isEmpty: widget.value.isEmpty,
@@ -234,19 +254,10 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
               Expanded(child: _buildValueDisplay()),
               if (widget.isClearable && widget.value.isNotEmpty && !widget.isDisabled)
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 4.0),
-                  child: GestureDetector(onTap: _clearSelection, child: const Icon(Icons.close, size: 20)),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: GestureDetector(onTap: _clearSelection, child: Icon(Icons.close, size: 18,color: Colors.grey.shade600)),
                 ),
-              if (widget.isFromApi && widget.isLoading)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: LoadingVibeIndicator(dotSize: theme.loadingIndicatorSize ?? 6.0, dotColor: theme.loadingIndicatorColor ?? effectiveTheme.primaryColor),
-                )
-              else
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Icon(_isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down, color: widget.isDisabled ? Colors.grey.shade400 : Colors.grey.shade700),
-                ),
+              _buildTrailingIcon(),
             ],
           ),
         ),
