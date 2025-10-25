@@ -1,12 +1,6 @@
 # Retcore Select
 
-<!-- 
-  You can create a simple logo and place it here.
-  For example, using a service like Canva or Figma.
--->
-<p align="center">
-  ![img.png](screenshots/img.png)
-</p>
+![img.png](screenshots/img.png)
 
 <p align="center">
   A flexible and beautiful Select Input control for Flutter, with powerful multi-select, autocomplete, and async support, built to be incredibly customizable.
@@ -39,9 +33,9 @@ Retcore Select is a highly versatile and themeable select component designed to 
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
-dependencies:
 ```
-retcore_select: 
+dependencies:
+  retcore_select: 
 ```
 
 ## Theme
