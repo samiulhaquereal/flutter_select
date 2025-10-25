@@ -22,6 +22,9 @@ class RetCoreSelect<T> extends StatelessWidget {
   /// Disables the widget.
   final bool isDisabled;
 
+  /// Required Field
+  final bool isRequired;
+
   /// Shows a clear button to deselect all values.
   final bool isClearable;
 
@@ -52,6 +55,9 @@ class RetCoreSelect<T> extends StatelessWidget {
   /// A callback that fires when the selected values change (for multi-select mode).
   final Function(List<T>)? onValuesChanged;
 
+  /// Field Validator
+  final FormFieldValidator<List<T>>? validator;
+
   const RetCoreSelect({
     super.key,
     required this.options,
@@ -63,9 +69,11 @@ class RetCoreSelect<T> extends StatelessWidget {
     this.isClearable = false,
     this.isFromApi = false,
     this.isLoading = false,
+    this.isRequired = false,
     this.theme,
     this.chipBuilder,
     this.onSearch,
+    this.validator,
     this.value,
     this.onChanged,
     this.values,
@@ -93,6 +101,8 @@ class RetCoreSelect<T> extends StatelessWidget {
       placeholder: placeholder,
       label: label,
       isMulti: isMulti,
+      validator: validator,
+      isRequired: isRequired,
       isSearchable: isSearchable,
       isDisabled: isDisabled,
       isClearable: isClearable,

@@ -4,6 +4,7 @@ import 'package:retcore_select/src/config/import.dart';
 class RetCoreSelectTheme {
   // --- Field Label ---
   final TextStyle? labelStyle;
+  final TextStyle? requiredTextStyle;
 
   // --- Main Field Container ---
   final Color? fieldDisabledColor;
@@ -43,6 +44,7 @@ class RetCoreSelectTheme {
   /// Creates a theme for the [CustomSelect] widget.
   const RetCoreSelectTheme({
     this.labelStyle,
+    this.requiredTextStyle,
     this.searchIconColor,
     this.decoration,
     this.searchIconSize,

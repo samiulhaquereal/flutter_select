@@ -16,9 +16,11 @@ class CustomSelectBase<T> extends StatefulWidget {
       isDisabled,
       isClearable,
       isFromApi,
-      isLoading;
+      isLoading,
+      isRequired;
   final RetCoreSelectTheme theme;
   final CustomChipBuilder<T>? chipBuilder;
+  final FormFieldValidator<List<T>>? validator;
   final Function(List<T> newValue) onChanged;
   final Function(String query)? onSearch;
 
@@ -34,10 +36,12 @@ class CustomSelectBase<T> extends StatefulWidget {
     required this.isClearable,
     required this.isFromApi,
     required this.isLoading,
+    required this.isRequired,
     required this.theme,
     this.chipBuilder,
     required this.onChanged,
     this.onSearch,
+    this.validator,
   });
 
   @override
@@ -46,13 +50,13 @@ class CustomSelectBase<T> extends StatefulWidget {
 
 class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   final LayerLink _layerLink = LayerLink();
+  final GlobalKey<FormFieldState<List<T>>> _formFieldKey = GlobalKey<FormFieldState<List<T>>>();
   TextEditingController? _searchController;
   FocusNode? _searchFocusNode;
   OverlayEntry? _overlayEntry;
   Debouncer? _debouncer;
   List<T> _filteredOptions = [];
   bool _isOverlayVisible = false;
-
   RetCoreSelectTheme get theme => widget.theme;
 
   @override
@@ -322,67 +326,81 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return CompositedTransformTarget(
-      link: _layerLink,
-      child: GestureDetector(
-        onTap: _toggleOverlay,
-        child: InputDecorator(
-          decoration: (theme.decoration ?? InputDecoration()).copyWith(
-            labelText: widget.label,
-            hintText: widget.label != null ? widget.placeholder : null,
-            hintStyle: theme.placeholderStyle,
-            labelStyle: theme.labelStyle,
-            floatingLabelStyle: theme.floatingLabelStyle,
-            filled: widget.isDisabled,
-            fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
-            border:
-                theme.decoration?.border ??
-                OutlineInputBorder(
-                  borderRadius:
-                      widget.theme.fieldBorderRadius ??
-                      BorderRadius.all(Radius.circular(0)),
-                ),
-            enabledBorder:
-                theme.decoration?.enabledBorder ?? const OutlineInputBorder(),
-            focusedBorder:
-                theme.decoration?.focusedBorder ?? const OutlineInputBorder(),
-            contentPadding:
-                theme.decoration?.contentPadding ??
-                const EdgeInsets.fromLTRB(12, 16, 12, 16),
-            disabledBorder:
-                theme.decoration?.disabledBorder ??
-                OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: theme.fieldDisabledColor ?? AppColors.shade200GrayColor ?? AppColors.greyColor,
-                    width: 2.0,
-                  ),
-                ),
-          ),
-          isFocused: _isOverlayVisible,
-          isEmpty: widget.value.isEmpty,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(child: _buildValueDisplay()),
-              if (widget.isClearable &&
-                  widget.value.isNotEmpty &&
-                  !widget.isDisabled)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: GestureDetector(
-                    onTap: _clearSelection,
-                    child: Icon(
-                      Icons.close,
-                      size: 18,
-                      color: AppColors.shade600GrayColor,
+    return FormField(
+        key: _formFieldKey,
+        initialValue: widget.value,
+        builder: (field){
+          return CompositedTransformTarget(
+          link: _layerLink,
+          child: GestureDetector(
+            onTap: _toggleOverlay,
+            child: InputDecorator(
+              decoration: (theme.decoration ?? InputDecoration()).copyWith(
+                label: widget.label == null ? null : RichText(
+                  text: TextSpan(
+                    // Use the default label style from the theme, or a fallback.
+                    style: theme.labelStyle ?? TextStyle(
+                        fontSize: 16,
+                        color: _isOverlayVisible ? Theme.of(context).primaryColor : AppColors.shade600GrayColor
                     ),
+                    children: [
+                      TextSpan(text: widget.label),
+                      if (widget.isRequired)
+                        TextSpan(
+                          text: ' *',
+                          // Use a specific style for the asterisk, defaulting to red.
+                          style: theme.requiredTextStyle ?? TextStyle(color: AppColors.redColor,fontSize: 10),
+                        ),
+                    ],
                   ),
                 ),
-              _buildTrailingIcon(),
-            ],
+                hintText: widget.label != null ? widget.placeholder : null,
+                hintStyle: theme.placeholderStyle,
+                labelStyle: theme.labelStyle,
+                errorText: field.errorText,
+                floatingLabelStyle: theme.floatingLabelStyle,
+                filled: widget.isDisabled,
+                fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
+                border: theme.decoration?.border ?? OutlineInputBorder(
+                      borderRadius: widget.theme.fieldBorderRadius ?? BorderRadius.all(Radius.circular(0)),
+                    ),
+                enabledBorder: theme.decoration?.enabledBorder ?? const OutlineInputBorder(),
+                focusedBorder: theme.decoration?.focusedBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2.0)),
+                errorBorder: theme.decoration?.errorBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: 2.0)),
+                focusedErrorBorder: theme.decoration?.focusedErrorBorder ?? OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: 2.0)),
+                contentPadding: theme.decoration?.contentPadding ?? const EdgeInsets.fromLTRB(12, 16, 12, 16),
+                disabledBorder: theme.decoration?.disabledBorder ?? OutlineInputBorder(borderSide: BorderSide(
+                        color: theme.fieldDisabledColor ?? AppColors.shade200GrayColor ?? AppColors.greyColor,
+                        width: 2.0,
+                      ),
+                    ),
+              ),
+              isFocused: _isOverlayVisible,
+              isEmpty: widget.value.isEmpty,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(child: _buildValueDisplay()),
+                  if (widget.isClearable &&
+                      widget.value.isNotEmpty &&
+                      !widget.isDisabled)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: GestureDetector(
+                        onTap: _clearSelection,
+                        child: Icon(
+                          Icons.close,
+                          size: 18,
+                          color: AppColors.shade600GrayColor,
+                        ),
+                      ),
+                    ),
+                  _buildTrailingIcon(),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        );
+    });
   }
 }
