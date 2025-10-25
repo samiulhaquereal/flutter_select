@@ -22,6 +22,10 @@ Retcore Select is a highly versatile and themeable select component designed to 
 ## Key Features
 
 - **Single & Multi-Select**: Seamlessly switch between single and multi-selection modes with a simple boolean flag.
+- **Form Validation**:
+  - **Required Fields**: Make any select field mandatory with a simple `isRequired: true` flag.
+  - **Custom Logic**: Implement complex rules with an optional `validator` function.
+  - **Real-Time Feedback**: Integrates perfectly with `Form`'s `autovalidateMode` for instant user feedback.
 - **Fully Themeable**: Use the built-in `InputDecorator` to style the component like a standard `TextField`, or provide a comprehensive `FlutterSelectTheme` for deep customization of every element.
 - **Search & Autocomplete**:
     - **Local Filtering**: Instantly search through a predefined list of options.
@@ -152,6 +156,7 @@ RetCoreSelect<String>(
                     value: singleSelectValue,
                     isMulti: false,
                     isClearable: true,
+                    isRequired: true,
                     placeholder: 'Select one framework...',
                     onChanged: (newValue) => updateSingleSelect(newValue),
                   )
@@ -177,24 +182,26 @@ RetCoreSelect<String>(
 
 ### `RetCoreSelect` Properties
 
-| Property         | Type                     | Description                                                                                             |
-|------------------|--------------------------|---------------------------------------------------------------------------------------------------------|
-| `options`        | `List<dynamic>`          | The list of items to display in the dropdown.                                                           |
-| `placeholder`    | `String`                 | The text to show when the field is empty and has no label. Defaults to 'Select...'.                     |
-| `label`          | `String?`                | The floating label text for the input field.                                                            |
-| `isMulti`        | `bool`                   | If `true`, allows multiple values to be selected. Defaults to `false`.                                   |
-| `isSearchable`   | `bool`                   | If `true`, shows a search bar in the dropdown. Defaults to `false`.                                     |
-| `isDisabled`     | `bool`                   | If `true`, disables user interaction. Defaults to `false`.                                              |
-| `isClearable`    | `bool`                   | If `true`, shows a clear icon to remove all selected values. Defaults to `false`.                       |
-| `isFromApi`      | `bool`                   | Set to `true` when using `onSearch` to fetch data from an API. Defaults to `false`.                       |
-| `isLoading`      | `bool`                   | If `true`, shows loading indicators. Used with `isFromApi`. Defaults to `false`.                          |
-| `theme`          | `FlutterSelectTheme?`    | An object to customize the appearance of the widget.                                                    |
-| `chipBuilder`    | `CustomChipBuilder<T>?`  | A function to build custom widgets for selected items in multi-select mode.                             |
-| `onSearch`       | `Function(String)?`      | A callback that is triggered when the user types in the search field.                                   |
-| `value`          | `T?`                     | The selected value in single-select mode. **Required if `isMulti` is `false`**.                           |
-| `onChanged`      | `Function(T?)?`          | Callback for value changes in single-select mode. **Required if `isMulti` is `false`**.                   |
-| `values`         | `List<T>?`               | The list of selected values in multi-select mode. **Required if `isMulti` is `true`**.                     |
-| `onValuesChanged`| `Function(List<T>)?`   | Callback for value changes in multi-select mode. **Required if `isMulti` is `true`**.                     |
+| Property          | Type                                | Description                                                                                       |
+|-------------------|-------------------------------------|---------------------------------------------------------------------------------------------------|
+| `options`         | `List<dynamic>`                     | The list of items to display in the dropdown.                                                     |
+| `placeholder`     | `String`                            | The text to show when the field is empty and has no label. Defaults to 'Select...'.               |
+| `label`           | `String?`                           | The floating label text for the input field.                                                      |
+| `isMulti`         | `bool`                              | If `true`, allows multiple values to be selected. Defaults to `false`.                            |
+| `isSearchable`    | `bool`                              | If `true`, shows a search bar in the dropdown. Defaults to `false`.                               |
+| `isDisabled`      | `bool`                              | If `true`, disables user interaction. Defaults to `false`.                                        |
+| `isClearable`     | `bool`                              | If `true`, shows a clear icon to remove all selected values. Defaults to `false`.                 |
+| `isFromApi`       | `bool`                              | Set to `true` when using `onSearch` to fetch data from an API. Defaults to `false`.               |
+| `isLoading`       | `bool`                              | If `true`, shows loading indicators. Used with `isFromApi`. Defaults to `false`.                  |
+| `theme`           | `FlutterSelectTheme?`               | An object to customize the appearance of the widget.                                              |
+| `chipBuilder`     | `CustomChipBuilder<T>?`             | A function to build custom widgets for selected items in multi-select mode.                       |
+| `onSearch`        | `Function(String)?`                 | A callback that is triggered when the user types in the search field.                             |
+| `value`           | `T?`                                | The selected value in single-select mode. **Required if `isMulti` is `false`**.                   |
+| `onChanged`       | `Function(T?)?`                     | Callback for value changes in single-select mode. **Required if `isMulti` is `false`**.           |
+| `values`          | `List<T>?`                          | The list of selected values in multi-select mode. **Required if `isMulti` is `true`**.            |
+| `onValuesChanged` | `Function(List<T>)?`                | Callback for value changes in multi-select mode. **Required if `isMulti` is `true`**.             |
+| `isRequired`      | `bool`                              | If `true`, the field must have a value to be valid. Adds a `*` to the label. Defaults to `false`. |
+| `validator`       | `FormFieldValidator<List<T>>?`      | An optional function for custom validation logic. Runs after the `isRequired` check.              |
 
 ## Contributing
 
