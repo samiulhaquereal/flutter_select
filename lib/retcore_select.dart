@@ -70,11 +70,22 @@ class RetCoreSelect<T> extends StatelessWidget {
     this.onChanged,
     this.values,
     this.onValuesChanged,
-  })  : assert(isMulti ? (values != null && onValuesChanged != null) : (onChanged != null),
-  'For multi-select, `values` and `onValuesChanged` must be provided. For single-select, `onChanged` is required.'),
-        assert(isMulti ? (value == null && onChanged == null) : (values == null && onValuesChanged == null),
-        'Do not provide single-select properties (`value`, `onChanged`) in multi-select mode, and vice-versa.'),
-        assert(isFromApi ? onSearch != null : true, '`onSearch` callback must be provided when `isFromApi` is true.');
+  }) : assert(
+         isMulti
+             ? (values != null && onValuesChanged != null)
+             : (onChanged != null),
+         'For multi-select, `values` and `onValuesChanged` must be provided. For single-select, `onChanged` is required.',
+       ),
+       assert(
+         isMulti
+             ? (value == null && onChanged == null)
+             : (values == null && onValuesChanged == null),
+         'Do not provide single-select properties (`value`, `onChanged`) in multi-select mode, and vice-versa.',
+       ),
+       assert(
+         isFromApi ? onSearch != null : true,
+         '`onSearch` callback must be provided when `isFromApi` is true.',
+       );
 
   @override
   Widget build(BuildContext context) {
