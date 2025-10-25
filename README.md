@@ -39,7 +39,147 @@ Retcore Select is a highly versatile and themeable select component designed to 
 ## Installation
 
 Add this to your package's `pubspec.yaml` file:
+dependencies:
+```
+retcore_select: 
+```
 
+## Theme
+
+```flutter
+final customTheme = FlutterSelectTheme(
+    labelStyle: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      color: Colors.deepPurple,
+    ),
+    decoration: InputDecoration(
+      contentPadding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        borderSide: BorderSide(color: Colors.grey.shade400),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        borderSide: BorderSide(color: Colors.teal, width: 2.0),
+      ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade200, width: 2.0),
+        )
+    ),
+    fieldBorderRadius: BorderRadius.circular(12.0),
+    placeholderStyle: TextStyle(color: Colors.deepPurple.shade200, fontStyle: FontStyle.italic),
+    valueStyle: const TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+    floatingLabelStyle: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+
+    chipBackgroundColor: Colors.deepPurple.shade50,
+    chipLabelStyle: const TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.w500),
+    chipDeleteIconColor: Colors.deepPurple.shade200,
+    chipShape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16.0),
+      side: BorderSide.none,
+    ),
+
+    dropdownItemSelectedColor: Colors.deepPurple.shade400,
+    dropdownSelectedItemStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+
+    checkIconTheme: const IconThemeData(color: Colors.white, size: 20),
+
+    loadingIndicatorColor: Colors.pinkAccent,
+    loadingIndicatorSize: 8.0,
+    loadingTextStyle: const TextStyle(color: Colors.pinkAccent),
+    noOptionsFoundTextStyle: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+  );
+```
+
+### Multi-Select
+
+```flutter
+RetCoreSelect<String>(
+                    label: 'Your Favorite Frameworks',
+                    options: options,
+                    isSearchable: false,
+                    isDisabled: false,
+                    isClearable: true,
+                    theme: customTheme,
+                    values: multiSelectValue.toList(),
+                    isMulti: true,
+                    placeholder: 'Select your favorite frameworks (multi)...',
+                    onValuesChanged: (newValue) => updateMultiSelect(newValue),
+                    chipBuilder: (context, value, onDeleted) {
+                      return Chip(
+                        label: Text(
+                          value,
+                          style: const TextStyle(color: Colors.white, fontSize: 13),
+                        ),
+                        onDeleted: onDeleted,
+                        backgroundColor: _getColorForFramework(value),
+                        deleteIconColor: Colors.white70,
+                      );
+                    },
+                  )
+```
+
+### Multi-Select with Fixed Options
+
+```flutter
+RetCoreSelect<String>(
+                      options: options,
+                      isMulti: true,
+                      isSearchable: true,
+                      isDisabled: false,
+                      theme: customTheme,
+                      values: multiSelectValueWithFixed.toList(),
+                      onValuesChanged: (newValue) => updateMultiSelectWithFixedValue(newValue),
+                      placeholder: 'Select your favorite frameworks...',
+                      chipBuilder: (context, value, onDeleted) {
+                        // --- NEW: Check if the current chip is a fixed one ---
+                        final isFixed = fixedOptions.contains(value);
+
+                        return Chip(
+                          label: Text(
+                            value,
+                            style: const TextStyle(color: Colors.white, fontSize: 13),
+                          ),
+                          // If the option is fixed, pass null to onDeleted to hide the icon.
+                          onDeleted: isFixed ? null : onDeleted,
+                          backgroundColor: _getColorForFramework(value),
+                          deleteIconColor: Colors.white70,
+                        );
+                      },
+                    )
+```
+
+### Single-Select
+
+```flutter
+RetCoreSelect<String>(
+                    options: options,
+                    value: singleSelectValue,
+                    isMulti: false,
+                    isClearable: true,
+                    placeholder: 'Select one framework...',
+                    onChanged: (newValue) => updateSingleSelect(newValue),
+                  )
+```
+
+### Async
+
+```flutter
+RetCoreSelect<String>(
+                      // The options list is now dynamic, coming from the controller's API results
+                      options: apiOptions.toList(),
+                      isMulti: true,
+                      isSearchable: true,
+                      isClearable: true,
+                      isFromApi: true,
+                      isLoading: isLoading,
+                      onSearch: (query) => searchApi(query),
+                      values: multiSelectApi.toList(),
+                      onValuesChanged: (newValue) => multiSelectApi.assignAll(newValue),
+                      placeholder: 'Search for frameworks...',
+                    )
+```
 
 ### `RetCoreSelect` Properties
 
