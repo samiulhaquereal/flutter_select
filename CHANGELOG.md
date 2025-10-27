@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Enhanced the theme.
+
 ## 0.0.7
 
 * Required field & validation documentation added.
