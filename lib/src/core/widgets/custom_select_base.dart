@@ -254,13 +254,15 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                   color: widget.theme.searchIconTheme?.color,
                 ),
                 isDense: true,
-                border: theme.decoration?.border ??
+                border:
+                    theme.decoration?.border ??
                     OutlineInputBorder(
                       borderRadius:
-                      widget.theme.fieldBorderRadius ??
+                          widget.theme.fieldBorderRadius ??
                           BorderRadius.all(Radius.circular(0)),
                     ),
-                focusedBorder: theme.decoration?.focusedBorder ??
+                focusedBorder:
+                    theme.decoration?.focusedBorder ??
                     OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Theme.of(context).primaryColor,
@@ -340,7 +342,12 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
     return Icon(
       _isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
       size: theme.dropdownArrowSize ?? 18,
-      color: widget.isDisabled ? (theme.dropdownArrowDisabledColor ?? AppColors.shade400GrayColor) : (theme.dropdownArrowEnabledColor ?? AppColors.shade700GrayColor),
+      color:
+          widget.isDisabled
+              ? (theme.dropdownArrowDisabledColor ??
+                  AppColors.shade400GrayColor)
+              : (theme.dropdownArrowEnabledColor ??
+                  AppColors.shade700GrayColor),
     );
   }
 
@@ -394,7 +401,8 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                 floatingLabelStyle: theme.floatingLabelStyle,
                 filled: widget.isDisabled,
                 fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
-                border: theme.decoration?.border ??
+                border:
+                    theme.decoration?.border ??
                     OutlineInputBorder(
                       borderRadius:
                           widget.theme.fieldBorderRadius ??
@@ -458,7 +466,9 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                         child: Icon(
                           Icons.close,
                           size: theme.clearIconTheme?.size ?? 18.0,
-                          color: theme.clearIconTheme?.color ?? AppColors.shade600GrayColor,
+                          color:
+                              theme.clearIconTheme?.color ??
+                              AppColors.shade600GrayColor,
                         ),
                       ),
                     ),

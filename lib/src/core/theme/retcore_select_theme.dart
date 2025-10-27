@@ -125,27 +125,27 @@ class RetCoreSelectTheme {
       chipPadding: chipPadding ?? this.chipPadding,
       chipShape: chipShape ?? this.chipShape,
       dropdownItemSelectedColor:
-      dropdownItemSelectedColor ?? this.dropdownItemSelectedColor,
+          dropdownItemSelectedColor ?? this.dropdownItemSelectedColor,
       dropdownItemStyle: dropdownItemStyle ?? this.dropdownItemStyle,
       dropdownSelectedItemStyle:
-      dropdownSelectedItemStyle ?? this.dropdownSelectedItemStyle,
+          dropdownSelectedItemStyle ?? this.dropdownSelectedItemStyle,
       checkIconTheme: checkIconTheme ?? this.checkIconTheme,
       searchHintStyle: searchHintStyle ?? this.searchHintStyle,
       searchIconTheme: searchIconTheme ?? this.searchIconTheme,
       searchFieldDecoration:
-      searchFieldDecoration ?? this.searchFieldDecoration,
+          searchFieldDecoration ?? this.searchFieldDecoration,
       loadingIndicatorSize: loadingIndicatorSize ?? this.loadingIndicatorSize,
       loadingIndicatorColor:
-      loadingIndicatorColor ?? this.loadingIndicatorColor,
+          loadingIndicatorColor ?? this.loadingIndicatorColor,
       loadingTextStyle: loadingTextStyle ?? this.loadingTextStyle,
       noOptionsFoundTextStyle:
-      noOptionsFoundTextStyle ?? this.noOptionsFoundTextStyle,
+          noOptionsFoundTextStyle ?? this.noOptionsFoundTextStyle,
       clearIconTheme: clearIconTheme ?? this.clearIconTheme,
       dropdownArrowSize: dropdownArrowSize ?? this.dropdownArrowSize,
       dropdownArrowEnabledColor:
-      dropdownArrowEnabledColor ?? this.dropdownArrowEnabledColor,
+          dropdownArrowEnabledColor ?? this.dropdownArrowEnabledColor,
       dropdownArrowDisabledColor:
-      dropdownArrowDisabledColor ?? this.dropdownArrowDisabledColor,
+          dropdownArrowDisabledColor ?? this.dropdownArrowDisabledColor,
     );
   }
 }

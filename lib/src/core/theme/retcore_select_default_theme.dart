@@ -10,7 +10,9 @@ class RetCoreSelectDefaultTheme {
     return RetCoreSelectTheme(
       // --- Field & Label ---
       labelStyle: textTheme.bodyLarge,
-      requiredTextStyle: textTheme.bodyLarge?.copyWith(color: colorScheme.error),
+      requiredTextStyle: textTheme.bodyLarge?.copyWith(
+        color: colorScheme.error,
+      ),
       valueStyle: textTheme.titleMedium,
       placeholderStyle: textTheme.titleMedium?.copyWith(
         color: colorScheme.onSurface.withOpacity(0.5),
@@ -22,7 +24,9 @@ class RetCoreSelectDefaultTheme {
 
       // --- Chips ---
       chipBackgroundColor: colorScheme.secondaryContainer,
-      chipLabelStyle: textTheme.labelMedium?.copyWith(color: colorScheme.onSecondaryContainer),
+      chipLabelStyle: textTheme.labelMedium?.copyWith(
+        color: colorScheme.onSecondaryContainer,
+      ),
       chipDeleteIconColor: colorScheme.onSecondaryContainer.withOpacity(0.7),
       chipPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       chipShape: RoundedRectangleBorder(
@@ -33,11 +37,16 @@ class RetCoreSelectDefaultTheme {
       // --- Dropdown ---
       dropdownItemSelectedColor: colorScheme.primary.withOpacity(0.1),
       dropdownItemStyle: textTheme.bodyMedium,
-      dropdownSelectedItemStyle: textTheme.bodyMedium?.copyWith(color: colorScheme.primary),
+      dropdownSelectedItemStyle: textTheme.bodyMedium?.copyWith(
+        color: colorScheme.primary,
+      ),
 
       // --- Icons ---
       checkIconTheme: IconThemeData(color: colorScheme.primary, size: 20),
-      clearIconTheme: IconThemeData(color: colorScheme.onSurface.withOpacity(0.6), size: 18),
+      clearIconTheme: IconThemeData(
+        color: colorScheme.onSurface.withOpacity(0.6),
+        size: 18,
+      ),
       dropdownArrowSize: 24.0,
       dropdownArrowEnabledColor: colorScheme.onSurface.withOpacity(0.6),
       dropdownArrowDisabledColor: colorScheme.onSurface.withOpacity(0.3),
@@ -53,9 +62,12 @@ class RetCoreSelectDefaultTheme {
 
       // --- Indicators ---
       loadingIndicatorColor: colorScheme.primary,
-      loadingTextStyle: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
-      noOptionsFoundTextStyle: textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
+      loadingTextStyle: textTheme.bodySmall?.copyWith(
+        fontStyle: FontStyle.italic,
+      ),
+      noOptionsFoundTextStyle: textTheme.bodySmall?.copyWith(
+        fontStyle: FontStyle.italic,
+      ),
     );
   }
 }
-
