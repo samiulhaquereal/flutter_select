@@ -250,17 +250,25 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                 hintStyle: theme.searchHintStyle,
                 prefixIcon: Icon(
                   Icons.search,
-                  size: widget.theme.searchIconSize,
-                  color: widget.theme.searchIconColor,
+                  size: widget.theme.searchIconTheme?.size,
+                  color: widget.theme.searchIconTheme?.color,
                 ),
                 isDense: true,
-                border: OutlineInputBorder(
-                  borderRadius:
+                border: theme.decoration?.border ??
+                    OutlineInputBorder(
+                      borderRadius:
                       widget.theme.fieldBorderRadius ??
-                      BorderRadius.circular(0),
-                ),
+                          BorderRadius.all(Radius.circular(0)),
+                    ),
+                focusedBorder: theme.decoration?.focusedBorder ??
+                    OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                        width: 2.0,
+                      ),
+                    ),
               ),
-              style: const TextStyle(fontSize: 14),
+              style: theme.valueStyle ?? const TextStyle(fontSize: 14),
             ),
           ),
         if (widget.isSearchable) const Divider(height: 1),
@@ -331,10 +339,8 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
     }
     return Icon(
       _isOverlayVisible ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-      color:
-          widget.isDisabled
-              ? AppColors.shade400GrayColor
-              : AppColors.shade700GrayColor,
+      size: theme.dropdownArrowSize ?? 18,
+      color: widget.isDisabled ? (theme.dropdownArrowDisabledColor ?? AppColors.shade400GrayColor) : (theme.dropdownArrowEnabledColor ?? AppColors.shade700GrayColor),
     );
   }
 
@@ -388,8 +394,7 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                 floatingLabelStyle: theme.floatingLabelStyle,
                 filled: widget.isDisabled,
                 fillColor: widget.isDisabled ? theme.fieldDisabledColor : null,
-                border:
-                    theme.decoration?.border ??
+                border: theme.decoration?.border ??
                     OutlineInputBorder(
                       borderRadius:
                           widget.theme.fieldBorderRadius ??
@@ -452,8 +457,8 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
                         onTap: _clearSelection,
                         child: Icon(
                           Icons.close,
-                          size: 18,
-                          color: AppColors.shade600GrayColor,
+                          size: theme.clearIconTheme?.size ?? 18.0,
+                          color: theme.clearIconTheme?.color ?? AppColors.shade600GrayColor,
                         ),
                       ),
                     ),

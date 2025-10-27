@@ -45,7 +45,9 @@ dependencies:
 ## Theme
 
 ```flutter
-final customTheme = RetCoreSelectTheme(
+final defaultTheme = RetCoreSelectDefaultTheme.of(context);
+
+final customTheme = defaultTheme.copyWith(
     labelStyle: const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,
@@ -82,6 +84,11 @@ final customTheme = RetCoreSelectTheme(
     dropdownSelectedItemStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
 
     checkIconTheme: const IconThemeData(color: Colors.white, size: 20),
+    
+    searchIconTheme: const IconThemeData(
+      color: Colors.red,
+      size: 22,
+    ),
 
     loadingIndicatorColor: Colors.pinkAccent,
     loadingIndicatorSize: 8.0,

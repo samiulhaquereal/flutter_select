@@ -1,5 +1,5 @@
 import 'package:retcore_select/src/config/import.dart';
-export 'src/core/theme/field_style.dart';
+export 'src/core/theme/retcore_select_default_theme.dart';
 
 /// A highly customizable select widget for Flutter, supporting single and multi-selection,
 /// local and API-based searching, and extensive theming.
