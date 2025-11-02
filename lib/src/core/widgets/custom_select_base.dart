@@ -170,29 +170,40 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
   }
 
   void _onOptionSelected(T option) {
+    List<T> newValue;
     if (widget.isMulti) {
-      List<T> newValue = List.from(widget.value);
+      newValue = List.from(widget.value);
       if (newValue.contains(option)) {
         newValue.remove(option);
       } else {
         newValue.add(option);
       }
-      widget.onChanged(newValue);
     } else {
-      widget.onChanged([option]);
+      newValue = [option];
       _toggleOverlay();
     }
+    // FIX: Update the FormField's state
+    _formFieldKey.currentState?.didChange(newValue);
+    widget.onChanged(newValue);
   }
 
   void _onChipDeleted(T option) {
     if (widget.isMulti) {
       List<T> newValue = List.from(widget.value);
       newValue.remove(option);
+      // FIX: Update the FormField's state
+      _formFieldKey.currentState?.didChange(newValue);
       widget.onChanged(newValue);
     }
   }
 
-  void _clearSelection() => widget.onChanged([]);
+  void _clearSelection() {
+    final newValue = <T>[];
+
+    // FIX: Update the FormField's state
+    _formFieldKey.currentState?.didChange(newValue);
+    widget.onChanged(newValue);
+  }
 
   Widget _buildValueDisplay() {
     if (widget.isMulti && widget.value.isNotEmpty) {
@@ -353,9 +364,10 @@ class _CustomSelectBaseState<T> extends State<CustomSelectBase<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return FormField(
+    return FormField<List<T>>(
       key: _formFieldKey,
       initialValue: widget.value,
+      validator: widget.validator,
       builder: (field) {
         return CompositedTransformTarget(
           link: _layerLink,
