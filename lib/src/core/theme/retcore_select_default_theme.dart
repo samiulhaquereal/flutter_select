@@ -15,11 +15,11 @@ class RetCoreSelectDefaultTheme {
       ),
       valueStyle: textTheme.titleMedium,
       placeholderStyle: textTheme.titleMedium?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.5),
+        color: colorScheme.onSurface.withAlpha(128), // 50% opacity
       ),
 
       // --- Main Field Container ---
-      fieldDisabledColor: colorScheme.onSurface.withOpacity(0.12),
+      fieldDisabledColor: colorScheme.onSurface.withAlpha(30), // 12% opacity
       fieldBorderRadius: BorderRadius.circular(AppSizes.inputFieldRadius),
 
       // --- Chips ---
@@ -27,15 +27,21 @@ class RetCoreSelectDefaultTheme {
       chipLabelStyle: textTheme.labelMedium?.copyWith(
         color: colorScheme.onSecondaryContainer,
       ),
-      chipDeleteIconColor: colorScheme.onSecondaryContainer.withOpacity(0.7),
+      chipDeleteIconColor: colorScheme.onSecondaryContainer.withAlpha(
+        178,
+      ), // 70% opacity
       chipPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       chipShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
-        side: BorderSide(color: colorScheme.outline.withOpacity(0.5)),
+        side: BorderSide(
+          color: colorScheme.outline.withAlpha(128),
+        ), // 50% opacity
       ),
 
       // --- Dropdown ---
-      dropdownItemSelectedColor: colorScheme.primary.withOpacity(0.1),
+      dropdownItemSelectedColor: colorScheme.primary.withAlpha(
+        26,
+      ), // 10% opacity
       dropdownItemStyle: textTheme.bodyMedium,
       dropdownSelectedItemStyle: textTheme.bodyMedium?.copyWith(
         color: colorScheme.primary,
@@ -44,19 +50,22 @@ class RetCoreSelectDefaultTheme {
       // --- Icons ---
       checkIconTheme: IconThemeData(color: colorScheme.primary, size: 20),
       clearIconTheme: IconThemeData(
-        color: colorScheme.onSurface.withOpacity(0.6),
+        color: colorScheme.onSurface.withAlpha(153), // 60% opacity
         size: 18,
       ),
       dropdownArrowSize: 24.0,
-      dropdownArrowEnabledColor: colorScheme.onSurface.withOpacity(0.6),
-      dropdownArrowDisabledColor: colorScheme.onSurface.withOpacity(0.3),
-
+      dropdownArrowEnabledColor: colorScheme.onSurface.withAlpha(
+        153,
+      ), // 60% opacity
+      dropdownArrowDisabledColor: colorScheme.onSurface.withAlpha(
+        77,
+      ), // 30% opacity
       // --- Search ---
       searchHintStyle: textTheme.bodyMedium?.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.5),
+        color: colorScheme.onSurface.withAlpha(128), // 50% opacity
       ),
       searchIconTheme: IconThemeData(
-        color: colorScheme.onSurface.withOpacity(0.6),
+        color: colorScheme.onSurface.withAlpha(153), // 60% opacity
         size: 20.0,
       ),
 
